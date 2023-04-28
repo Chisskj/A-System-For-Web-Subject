@@ -1,3 +1,3 @@
 # WebProject22Gr03
-Cách chạy
+Cách ch
 A project for IT4409E Hust
