@@ -56,7 +56,8 @@ const TabDetail = ({ item }) => {
         <CardMedia
           className={classes.media}
           image={
-            item.image_url || 'https://images4.alphacoders.com/206/20658.jpg'
+            item.image_url ||
+            'https://images.pexels.com/photos/592077/pexels-photo-592077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
           }
           title={item.title}
         />
