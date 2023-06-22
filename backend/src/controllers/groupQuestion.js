@@ -10,7 +10,6 @@ const getAllGroupQuestionByUser = async (req, res) => {
     userId: user._id,
     key,
   });
-  console.log(data);
   return res.send({
     status: 1,
     result: {

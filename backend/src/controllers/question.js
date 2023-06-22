@@ -32,7 +32,6 @@ const getQuestion = async (req, res) => {
 
 const createQuestion = async (req, res) => {
   const data = req.body;
-  console.log(data);
   const { user } = req;
   const question = await questionService.createQuestion({
     ...data,

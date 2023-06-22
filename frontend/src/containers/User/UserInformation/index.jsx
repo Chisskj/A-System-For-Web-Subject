@@ -135,7 +135,7 @@ const User = () => {
                   label="Số điện thoại"
                   variant="outlined"
                   fullWidth
-                  value={(userInfo && userInfo.phoneNumber) || ''}
+                  value={(userInfo && userInfo.phone_number) || ''}
                   onChange={handleChange}
                 />
               </Grid>
@@ -145,7 +145,7 @@ const User = () => {
                   label="Link Facebook"
                   variant="outlined"
                   fullWidth
-                  value={(userInfo && userInfo.urlFacebook) || ''}
+                  value={(userInfo && userInfo.url_facebook) || ''}
                   onChange={handleChange}
                 />
               </Grid>
@@ -155,7 +155,7 @@ const User = () => {
                   label="Link Youtube"
                   variant="outlined"
                   fullWidth
-                  value={(userInfo && userInfo.urlYoutube) || ''}
+                  value={(userInfo && userInfo.url_youtube) || ''}
                   onChange={handleChange}
                 />
               </Grid>
@@ -165,7 +165,7 @@ const User = () => {
                   label="Link Website"
                   variant="outlined"
                   fullWidth
-                  value={(userInfo && userInfo.urlWebsite) || ''}
+                  value={(userInfo && userInfo.url_website) || ''}
                   onChange={handleChange}
                 />
               </Grid>

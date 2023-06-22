@@ -27,20 +27,16 @@ const Home = () => {
   const [contestsJoined, setContestsJoined] = useState([]);
 
   const fetchContests = async () => {
-    try {
-      const data = await apis.contest.getContests();
-      const data1 = JSON.parse(data);
-      if (data1 && data1.status) {
-        setContests(data1.result.data);
-        contestsDefault = [...data1.result.data];
-        setIsLoading(false);
-      } else {
-        enqueueSnackbar((data1 && data1.message) || 'Fetch data failed', {
-          variant: 'error',
-        });
-      }
-    } catch (error) {
-      enqueueSnackbar('Fetch data failed', { variant: 'error' });
+    const data = await apis.contest.getContests();
+    const data1 = JSON.parse(data);
+    if (data1 && data1.status) {
+      setContests(data1.result.data);
+      contestsDefault = [...data1.result.data];
+      setIsLoading(false);
+    } else {
+      enqueueSnackbar((data1 && data1.message) || 'Fetch data failed', {
+        variant: 'error',
+      });
     }
   };
 
@@ -63,41 +59,40 @@ const Home = () => {
   const handleChangeTab = async (event, newValue) => {
     setTab(newValue);
     const date = new Date();
-    try {
-      if (newValue === 0) {
-        setContests([...contestsDefault]);
-        return;
-      }
-      if (newValue === 1) {
-        if (contestsJoined.length <= 0) {
-          await fetchContestsJoined();
-        }
-        return;
-      }
-      if (newValue === 2) {
-        const newContests = contestsDefault.filter((el) => {
-          if (el.endTime && new Date(el.endTime) < date) return false;
-          return new Date(el.startTime) <= date;
-        });
-        setContests([...newContests]);
-        return;
-      }
-      if (newValue === 3) {
-        const newContests = contestsDefault.filter(
-          (el) => new Date(el.startTime) > date,
-        );
-        setContests([...newContests]);
-        return;
-      }
-      if (newValue === 4) {
-        const newContests = contestsDefault.filter(
-          (el) => el.endTime && new Date(el.endTime) < date,
-        );
-        setContests([...newContests]);
-      }
-    } catch (error) {
-      enqueueSnackbar('An error occurred', { variant: 'error' });
+    if (newValue === 0) {
+      setContests([...contestsDefault]);
+      return;
     }
+    if (newValue === 1) {
+      if (contestsJoined.length <= 0) {
+        await fetchContestsJoined();
+      }
+      return;
+    }
+    if (newValue === 2) {
+      const newContests = contestsDefault.filter((el) => {
+        if (el.endTime && new Date(el.endTime) < date) return false;
+        if (new Date(el.startTime) > date) return false;
+        return true;
+      });
+      setContests([...newContests]);
+      return;
+    }
+    if (newValue === 3) {
+      const newContests = contestsDefault.filter(
+        (el) => new Date(el.startTime) > date,
+      );
+      setContests([...newContests]);
+      return;
+    }
+    if (newValue === 4) {
+      const newContests = contestsDefault.filter(
+        (el) => el.endTime && new Date(el.endTime) < date,
+      );
+      setContests([...newContests]);
+      return;
+    }
+    return;
   };
 
   if (isLoading) {
@@ -129,7 +124,7 @@ const Home = () => {
       {tab === 1 ? (
         <Grid container spacing={3}>
           {contestsJoined.map((el) => (
-            <TabDetail key={el.id} item={el} />
+            <TabDetail item={el} />
           ))}
         </Grid>
       ) : (

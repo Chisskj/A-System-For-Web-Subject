@@ -144,6 +144,7 @@ const getAllQuestion = async (id) => {
   const contest = await contestDao.findContest({
     _id: id,
   });
+  console.log(contest);
   if (!contest) {
     throw new CustomError(errorCodes.NOT_FOUND);
   }
