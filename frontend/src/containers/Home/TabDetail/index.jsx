@@ -30,11 +30,11 @@ const TabDetail = ({ item }) => {
       <Card className={classes.root}>
         <CardHeader
           avatar={
-            item.createdBy && item.createdBy.avatar ? (
-              <Avatar alt={item.createdBy.name} src={item.createdBy.avatar} />
+            item.created_by.avatar ? (
+              <Avatar alt={item.created_by.name} src={item.created_by.avatar} />
             ) : (
               <Avatar aria-label="recipe" className={classes.avatar}>
-                {item.createdBy && item.createdBy.name[0]}
+                {item.created_by.name[0]}
               </Avatar>
             )
           }
@@ -47,11 +47,11 @@ const TabDetail = ({ item }) => {
                 marginTop: '20px',
               }}
             >
-              {item.examTime || 0} phút
+              {item.exam_time} phút
             </Typography>
           }
           title={item.title}
-          subheader={item.createdBy ? `Tạo bởi: ${item.createdBy.name}` : ''}
+          subheader={`Tạo bởi: ${item.created_by.name}`}
         />
         <CardMedia
           className={classes.media}
@@ -77,7 +77,7 @@ const TabDetail = ({ item }) => {
                 fontSize="small"
               />
               <Typography variant="body2" color="textSecondary" component="p">
-                {item && moment(item.startTime).format('lll')}
+                {item && moment(item.start_time).format('lll')}
               </Typography>
             </Box>
             <Box display="flex" justifyContent="flex-end">

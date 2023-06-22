@@ -22,6 +22,7 @@ axiosClient.interceptors.response.use(
   },
   (error) => {
     // Handle error
+    // eslint-disable-next-line no-console
     console.error(error);
   },
 );

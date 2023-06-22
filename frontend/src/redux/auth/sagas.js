@@ -1,5 +1,5 @@
 /* eslint-disable no-case-declarations */
-import { put, all, takeLatest, takeEvery , call} from 'redux-saga/effects';
+import { put, all, takeLatest, takeEvery, call} from 'redux-saga/effects';
 import apis from '../../apis';
 import actions from '../actions';
 import { setCookie } from '../../utils/cookie';

@@ -35,7 +35,7 @@ const Login = () => {
     if (message) {
       enqueueSnackbar(message, { variant: 'error' });
     }
-  }, [isLoggingIn]);
+  }, [isLoggingIn, message, enqueueSnackbar]);
 
   const handleLoginFailureGoogle = (res) => {
     enqueueSnackbar(res, { variant: 'error' });
@@ -82,9 +82,9 @@ const Login = () => {
     if (e.key === 'Enter') {
       try {
         await handleLogin();
-        // Handle successful login here
+        // Xử lý đăng nhập thành công ở đây
       } catch (error) {
-        // Handle login error here
+        // Xử lý lỗi đăng nhập ở đây
       }
     }
   };
@@ -118,7 +118,7 @@ const Login = () => {
                 setEmail(e.target.value);
               }}
               error={emailError}
-              helperText={emailError ? 'Email is required' : ''}
+              helperText={emailError ? 'Email là bắt buộc' : ''}
             />
             <TextField
               variant="outlined"
@@ -136,7 +136,7 @@ const Login = () => {
                 setPassword(e.target.value);
               }}
               error={passwordError}
-              helperText={passwordError ? 'Password is required' : ''}
+              helperText={passwordError ? 'Mật khẩu là bắt buộc' : ''}
             />
             <Button
               type="submit"
