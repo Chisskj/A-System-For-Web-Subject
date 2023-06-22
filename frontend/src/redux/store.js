@@ -18,7 +18,7 @@ function configureStore(preloadedState = initialState) {
   const store = createStore(
     rootReducer,
     preloadedState,
-    bindMiddleware([sagaMiddleware])
+    bindMiddleware([sagaMiddleware]),
   );
 
   store.runSagaTask = () => {

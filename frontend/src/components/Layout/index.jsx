@@ -1,4 +1,5 @@
-import React, { useState, useRef } from 'react';
+/* eslint-disable react/no-array-index-key */
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -26,6 +27,8 @@ import {
   ChevronLeft as ChevronLeftIcon,
   Dashboard as DashboardIcon,
   Person as PersonIcon,
+  Assignment as AssignmentIcon,
+  Timer as TimerIcon,
 } from '@material-ui/icons';
 import routes from '../../constants/route';
 import actions from '../../redux/actions';
@@ -37,6 +40,16 @@ const menus = [
     heading: 'Trang chủ',
     icon: <DashboardIcon />,
     route: routes.HOME,
+  },
+  {
+    heading: 'Quản lý cuộc thi',
+    icon: <TimerIcon />,
+    route: routes.CONTEST,
+  },
+  {
+    heading: 'Quản lý câu hỏi',
+    icon: <AssignmentIcon />,
+    route: routes.GROUP_QUESTIONS,
   },
   {
     heading: 'Thông tin tài khoản',
@@ -51,8 +64,7 @@ const Layout = ({ children }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.auth.user);
   const { pathname } = useLocation();
-  const [anchorEl, setAnchorEl] = useState(null);
-  const anchorRef = useRef(null);
+  const [anchorEl, setAnchorEl] = React.useState(null);
 
   const handleOpenMenuHeader = (event) => {
     setAnchorEl(event.currentTarget);
@@ -74,7 +86,6 @@ const Layout = ({ children }) => {
     setCookie('accessToken');
     dispatch(actions.auth.logout());
   };
-
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -106,27 +117,19 @@ const Layout = ({ children }) => {
             Multichoice
           </Typography>
           <Box display="flex" alignItems="center">
-            <Typography variant="body2">
-              {userInfo && userInfo.name}
-            </Typography>
+            <Typography variant="body2">{userInfo && userInfo.name}</Typography>
             {userInfo && userInfo.avatar ? (
               <Avatar
                 alt="avatar"
                 src={userInfo.avatar}
                 className={classes.avatar}
                 onClick={handleOpenMenuHeader}
-                ref={anchorRef}
-                aria-controls="simple-menu"
-                aria-haspopup="true"
               />
             ) : (
               <Avatar
                 aria-label="recipe"
                 className={classes.avatar}
                 onClick={handleOpenMenuHeader}
-                ref={anchorRef}
-                aria-controls="simple-menu"
-                aria-haspopup="true"
               >
                 {(userInfo && userInfo.name && userInfo.name[0]) || 'T'}
               </Avatar>
@@ -138,6 +141,7 @@ const Layout = ({ children }) => {
             keepMounted
             open={Boolean(anchorEl)}
             onClose={handleCloseMenuHeader}
+            getContentAnchorEl={null}
             anchorOrigin={{
               vertical: 'bottom',
               horizontal: 'center',
@@ -146,7 +150,6 @@ const Layout = ({ children }) => {
               vertical: 'top',
               horizontal: 'center',
             }}
-            getContentAnchorEl={null}
           >
             <MenuItem onClick={handleLogout}>Logout</MenuItem>
           </Menu>

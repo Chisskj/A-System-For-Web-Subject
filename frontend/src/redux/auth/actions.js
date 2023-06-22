@@ -10,7 +10,6 @@ export const actionTypes = {
 };
 
 export function login(loginType, data) {
-
   return {
     type: actionTypes.LOGIN,
     loginType,
@@ -19,7 +18,6 @@ export function login(loginType, data) {
 }
 
 export function loginSuccess(accessToken, user) {
-  console.log("chichichi1");
   return {
     type: actionTypes.LOGIN_SUCCESS,
     accessToken,
