@@ -30,6 +30,7 @@ const findQuestionById = async (id) => {
   const question = await questionDao.findQuestion({ _id: id }, null, [
     'groupQuestion',
   ]);
+  console.log(question);
   if (!question) {
     throw new CustomError(errorCodes.NOT_FOUND);
   }
