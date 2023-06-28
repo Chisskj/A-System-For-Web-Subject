@@ -1,17 +1,16 @@
+/* eslint-disable-next-line react/jsx-wrap-multilines */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
-import {
-  Avatar,
-  Button,
-  CssBaseline,
-  TextField,
-  Paper,
-  Link,
-  Grid,
-  Typography,
-  Box,
-} from '@material-ui/core';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import Paper from '@material-ui/core/Paper';
+import Link from '@material-ui/core/Link';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons';
 import { GoogleLogin } from 'react-google-login';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
@@ -32,7 +31,7 @@ const Login = () => {
   const { isLoggingIn, message } = useSelector((state) => state.auth);
   useEffect(() => {
     if (isLoggingIn) return;
-    if (message) {
+    if (message && typeof message === 'string') {
       enqueueSnackbar(message, { variant: 'error' });
     }
   }, [isLoggingIn, message, enqueueSnackbar]);
@@ -57,16 +56,16 @@ const Login = () => {
     let countError = 0;
     if (email.length === 0) {
       setEmailError(true);
-      countError++;
+      countError += 1;
     } else if (!validateEmail(email)) {
       setEmailError(true);
-      countError++;
+      countError += 1;
     } else {
       setEmailError(false);
     }
     if (password.length === 0) {
       setPasswordError(true);
-      countError++;
+      countError += 1;
     } else {
       setPasswordError(false);
     }
@@ -84,7 +83,7 @@ const Login = () => {
         await handleLogin();
         // Xử lý đăng nhập thành công ở đây
       } catch (error) {
-        // Xử lý lỗi đăng nhập ở đây
+        // Handle login error here
       }
     }
   };
@@ -118,7 +117,7 @@ const Login = () => {
                 setEmail(e.target.value);
               }}
               error={emailError}
-              helperText={emailError ? 'Email là bắt buộc' : ''}
+              helperText={emailError ? 'Email is required' : ''}
             />
             <TextField
               variant="outlined"
@@ -136,7 +135,7 @@ const Login = () => {
                 setPassword(e.target.value);
               }}
               error={passwordError}
-              helperText={passwordError ? 'Mật khẩu là bắt buộc' : ''}
+              helperText={passwordError ? 'Password is required' : ''}
             />
             <Button
               type="submit"

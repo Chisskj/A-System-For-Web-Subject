@@ -300,7 +300,7 @@ const Contest = () => {
                   ).length
               }
               page={pagination.page}
-              onChangePage={handleChangePage}
+              onPageChange={handleChangePage}
               rowsPerPage={pagination.rowsPerPage}
             />
           )}
