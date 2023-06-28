@@ -18,7 +18,7 @@ ReactDOM.render(
   <React.StrictMode>
     <MuiThemeProvider theme={theme}>
       <Provider store={store()}>
-        <SnackbarProvider>
+        <SnackbarProvider maxSnack={3}>
           <Router />
         </SnackbarProvider>
       </Provider>
