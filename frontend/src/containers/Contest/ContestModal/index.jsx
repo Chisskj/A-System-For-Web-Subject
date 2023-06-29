@@ -31,11 +31,11 @@ import apis from '../../../apis';
 import { setDate, setTime } from '../../../utils/date';
 
 const ContestModal = ({
-     handleCloseModal,
-     open,
-     itemSelect,
-     handleUpdateContest,
-     groupQuestions,
+  handleCloseModal,
+  open,
+  itemSelect,
+  handleUpdateContest,
+  groupQuestions,
 }) => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
