@@ -176,6 +176,7 @@ const Login = () => {
                       color="primary"
                       className={classes.submit}
                       startIcon={
+                        // eslint-disable-next-line react/jsx-wrap-multilines
                         <Avatar
                           style={{
                             height: '20px',
@@ -209,6 +210,7 @@ const Login = () => {
                       color="primary"
                       className={classes.submit}
                       startIcon={
+                        // eslint-disable-next-line react/jsx-wrap-multilines
                         <Avatar
                           style={{
                             height: '20px',

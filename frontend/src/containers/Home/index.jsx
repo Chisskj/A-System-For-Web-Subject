@@ -71,8 +71,8 @@ const Home = () => {
     }
     if (newValue === 2) {
       const newContests = contestsDefault.filter((el) => {
-        if (el.endTime && new Date(el.endTime) < date) return false;
-        if (new Date(el.startTime) > date) return false;
+        if (el.end_time && new Date(el.end_time) < date) return false;
+        if (new Date(el.start_time) > date) return false;
         return true;
       });
       setContests([...newContests]);
@@ -80,14 +80,14 @@ const Home = () => {
     }
     if (newValue === 3) {
       const newContests = contestsDefault.filter(
-        (el) => new Date(el.startTime) > date,
+        (el) => new Date(el.start_time) > date,
       );
       setContests([...newContests]);
       return;
     }
     if (newValue === 4) {
       const newContests = contestsDefault.filter(
-        (el) => el.endTime && new Date(el.endTime) < date,
+        (el) => el.end_time && new Date(el.end_time) < date,
       );
       setContests([...newContests]);
       return;

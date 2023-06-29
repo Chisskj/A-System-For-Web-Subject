@@ -106,7 +106,7 @@ const Layout = ({ children }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Avatar src="https://res.cloudinary.com/dfbongzx0/image/upload/v1621772719/bfvfvstmneai0d1z0byx.png" />
+          <Avatar src="https://res.cloudinary.com/djalgpyge/image/upload/v1688034131/logo_ujxe3c.png" />
           <Typography
             component="h1"
             variant="h6"
@@ -114,7 +114,7 @@ const Layout = ({ children }) => {
             noWrap
             className={classes.title}
           >
-            Multichoice
+            Choice
           </Typography>
           <Box display="flex" alignItems="center">
             <Typography variant="body2">{userInfo && userInfo.name}</Typography>

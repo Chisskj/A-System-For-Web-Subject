@@ -1,6 +1,16 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
 import React, { useState } from 'react';
 import { useSnackbar } from 'notistack';
-import { TextField, Grid, Typography, Box, Paper, Button, IconButton, Avatar } from '@material-ui/core';
+import {
+  TextField,
+  Grid,
+  Typography,
+  Box,
+  Paper,
+  Button,
+  IconButton,
+  Avatar,
+} from '@material-ui/core';
 import { PhotoCamera as PhotoCameraIcon } from '@material-ui/icons';
 import { useSelector, useDispatch } from 'react-redux';
 import actions from '../../../redux/actions';
@@ -12,7 +22,9 @@ const User = () => {
   const dispatch = useDispatch();
   const { enqueueSnackbar } = useSnackbar();
 
-  const [userInfo, setUserInfo] = useState(useSelector((state) => state.auth.user));
+  const [userInfo, setUserInfo] = useState(
+    useSelector((state) => state.auth.user),
+  );
 
   const handleChange = (e) => {
     setUserInfo({
@@ -23,7 +35,15 @@ const User = () => {
 
   const handleSave = async (e) => {
     e.preventDefault();
-    const { name, avatar, dob, phoneNumber, urlFacebook, urlYoutube, urlWebsite } = userInfo;
+    const {
+      name,
+      avatar,
+      dob,
+      phoneNumber,
+      urlFacebook,
+      urlYoutube,
+      urlWebsite,
+    } = userInfo;
     if (name.trim().length <= 0) {
       enqueueSnackbar("Name can't be empty", { variant: 'error' });
       return;
@@ -42,7 +62,7 @@ const User = () => {
       dispatch(
         actions.auth.updateUser({
           ...data1.result.user,
-        })
+        }),
       );
       enqueueSnackbar('Update success', { variant: 'success' });
     } else {
@@ -90,7 +110,11 @@ const User = () => {
               onChange={handleUploadImage}
             />
             <label className={classes.btnCamera} htmlFor="icon-button-file">
-              <IconButton color="primary" aria-label="upload picture" component="span">
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+              >
                 <PhotoCameraIcon fontSize="large" />
               </IconButton>
             </label>
