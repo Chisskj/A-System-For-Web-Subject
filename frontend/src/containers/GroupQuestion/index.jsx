@@ -34,7 +34,7 @@ const GroupQuestion = () => {
   const history = useHistory();
   const [anchorEl, setAnchorEl] = useState(null);
   const [openModal, setOpenModal] = useState(false);
-  const [setKeySearch] = useState('');
+  const [, setKeySearch] = useState('');
   const [groupQuestionSelected, setGroupQuestionSelected] = useState();
   const [groupQuestions, setGroupQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
