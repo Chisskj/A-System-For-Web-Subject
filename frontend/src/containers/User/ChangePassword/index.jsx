@@ -62,7 +62,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <Paper className={classes.paper} variant= "outlined">
+    <Paper className={classes.paper} variant="outlined">
       <Box textAlign="center" mb={3}>
         <Typography variant="h4" component="h2">
           Thay đổi mật khẩu
