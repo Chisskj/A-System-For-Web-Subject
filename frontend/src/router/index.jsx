@@ -33,12 +33,12 @@ const App = () => {
       <Switch>
         {appRoutes.map(
           ({
-             path,
-             exact = true,
-             component: Component,
-             isPrivate = false,
-             ...rest
-           }) => {
+            path,
+            exact = true,
+            component: Component,
+            isPrivate = false,
+            ...rest
+          }) => {
             if (!isPrivate) {
               return (
                 <PublicRoute
@@ -59,7 +59,7 @@ const App = () => {
                 {...rest}
               />
             );
-          }
+          },
         )}
         <Redirect to={routes.HOME} />
       </Switch>

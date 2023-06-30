@@ -8,6 +8,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const bindMiddleware = (middleware) => {
   if (process.env.NODE_ENV !== 'production') {
+    // eslint-disable-next-line import/no-extraneous-dependencies, global-require
     const { composeWithDevTools } = require('redux-devtools-extension');
     return composeWithDevTools(applyMiddleware(...middleware));
   }

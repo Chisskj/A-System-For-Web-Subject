@@ -1,7 +1,7 @@
 import api from './api';
 
 export async function getGroupQuestions(key) {
-  return await api({
+  return api({
     method: 'GET',
     url: '/groupQuestions',
     params: { key },
@@ -9,7 +9,7 @@ export async function getGroupQuestions(key) {
 }
 
 export async function createGroupQuestion(data) {
-  return await api({
+  return api({
     method: 'POST',
     url: '/groupQuestions',
     data,
@@ -17,7 +17,7 @@ export async function createGroupQuestion(data) {
 }
 
 export async function updateGroupQuestions(id, data) {
-  return await api({
+  return api({
     method: 'PUT',
     url: `/groupQuestions/${id}`,
     data,
@@ -25,7 +25,7 @@ export async function updateGroupQuestions(id, data) {
 }
 
 export async function deleteGroupQuestions(id) {
-  return await api({
+  return api({
     method: 'DELETE',
     url: `/groupQuestions/${id}`,
   });
