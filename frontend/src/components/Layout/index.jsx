@@ -1,5 +1,5 @@
 /* eslint-disable react/no-array-index-key */
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import clsx from 'clsx';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -64,7 +64,8 @@ const Layout = ({ children }) => {
   const dispatch = useDispatch();
   const userInfo = useSelector((state) => state.auth.user);
   const { pathname } = useLocation();
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const anchorRef = useRef(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleOpenMenuHeader = (event) => {
     setAnchorEl(event.currentTarget);
@@ -86,6 +87,7 @@ const Layout = ({ children }) => {
     setCookie('accessToken');
     dispatch(actions.auth.logout());
   };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -123,12 +125,14 @@ const Layout = ({ children }) => {
                 alt="avatar"
                 src={userInfo.avatar}
                 className={classes.avatar}
+                ref={anchorRef}
                 onClick={handleOpenMenuHeader}
               />
             ) : (
               <Avatar
                 aria-label="recipe"
                 className={classes.avatar}
+                ref={anchorRef}
                 onClick={handleOpenMenuHeader}
               >
                 {(userInfo && userInfo.name && userInfo.name[0]) || 'T'}

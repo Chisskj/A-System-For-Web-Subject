@@ -56,8 +56,7 @@ const TabDetail = ({ item }) => {
         <CardMedia
           className={classes.media}
           image={
-            item.image_url ||
-            'https://monamedia.co/wp-content/uploads/2020/02/javascript-la-gi.jpg'
+            item.image_url || 'https://images4.alphacoders.com/206/20658.jpg'
           }
           title={item.title}
         />

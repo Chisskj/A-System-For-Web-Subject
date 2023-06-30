@@ -14,8 +14,6 @@ const getUserInfo = async (accessToken) => {
             const userInfo = JSON.parse(userInfoResponse);
             // Ở đây, bạn có thể trích xuất các thông tin như tên người dùng và avatar từ userInfo
             const { name, picture } = userInfo;
-            console.log('Tên người dùng:', name);
-            console.log('Avatar:', picture);
             return userInfo;
         } catch (error) {
             throw new Error('Lỗi khi lấy thông tin người dùng từ Apple Identity Service');

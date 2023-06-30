@@ -59,23 +59,29 @@ const Question = () => {
       offset,
       groupQuestionId,
     };
-    const data = await apis.question.getQuestionsInGroup({ ...query });
-    const data1 = JSON.parse(data);
-    console.log(data1);
-    if (data1 && data1.status) {
-      const { result } = data1;
-      setPagination({
-        ...pagination,
-        count: result.metadata.count || 0,
-      });
-      setQuestions(result.data);
-    } else {
-      enqueueSnackbar((data1 && data1.message) || 'Fetch data failed', {
+
+    try {
+      const data = await apis.question.getQuestionsInGroup({ ...query });
+      const data1 = JSON.parse(data);
+
+      if (data1 && data1.status) {
+        const { result } = data1;
+        setPagination({
+          ...pagination,
+          count: result.metadata.count || 0,
+        });
+        setQuestions(result.data);
+      } else {
+        enqueueSnackbar((data1 && data1.message) || 'Fetch data failed', {
+          variant: 'error',
+        });
+      }
+    } catch (error) {
+      enqueueSnackbar('Fetch data failed', {
         variant: 'error',
       });
     }
   };
-
   const handleChangePage = async (event, newPage) => {
     await fetchQuestions({
       key: keySearch,
@@ -157,10 +163,8 @@ const Question = () => {
 
   const validateQuestionInExcel = (row) => {
     const levels = ['EASY', 'MEDIUM', 'HARD'];
-    console.log(row[row.length - 1]);
     const correctAnswer = parseInt(row[row.length - 1]);
     const amountAnswer = row.length - 5;
-    console.log({ correctAnswer, amountAnswer });
     return !(
       !row[0] ||
       levels.indexOf(row[0]) < 0 ||
@@ -180,8 +184,6 @@ const Question = () => {
     const file = e.target.files[0];
     try {
       readXlsxFile(file).then(async (rows) => {
-        console.log(rows);
-
         await Promise.all(
           rows.map(async (el) => {
             const row = el
