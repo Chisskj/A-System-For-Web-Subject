@@ -15,7 +15,6 @@ const register = async (req, res) => {
 const login = async (req, res) => {
   const { email, password } = req.body;
   const { accessToken, user } = await authService.login(email, password);
-  console.log(accessToken);
   return res.send({ status: 1, result: { accessToken, user } });
 };
 
@@ -50,7 +49,6 @@ const loginByFacebook = async (req, res) => {
 };
 
 const verifyAccessToken = async (req, res) => {
-  console.log(req);
   const { accessToken } = req;
   const user = await authService.verifyAccessToken(accessToken);
   res.send({ status: 1, result: { user } });

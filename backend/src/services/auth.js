@@ -13,7 +13,6 @@ const { JWT_SECRET_KEY } = require('../configs');
 const Console = require("console");
 
 const login = async (email, password) => {
-  console.log("chinguuuuuuuuuu");
   const user = await userDao.findUser({ email });
   if (!user) throw new CustomError(errorCodes.USER_NOT_FOUND);
 
@@ -26,7 +25,6 @@ const login = async (email, password) => {
   const userId = user._id;
   const accessToken = await generateAccessToken(userId);
 
-  console.log(accessToken);
   return { accessToken, user };
 };
 

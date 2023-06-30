@@ -61,7 +61,6 @@ const getContest = async (req, res) => {
 
 const createContest = async (req, res) => {
   const data = req.body;
-  console.log(data);
   const { user } = req;
   const contest = await contestService.createContest({
     ...data,
@@ -71,7 +70,6 @@ const createContest = async (req, res) => {
 };
 
 const updateContest = async (req, res) => {
-  console.log(req.body);
   const data = req.body;
   const { id } = req.params;
   const { user } = req;

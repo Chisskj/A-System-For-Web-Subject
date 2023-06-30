@@ -58,6 +58,16 @@ const Contest = () => {
         count: result.metadata.count || 0,
       });
       setContests(result.data);
+      const updatedContests = result.data.map((contest) => ({
+        ...contest,
+        endTime: contest.end_time,
+        examTime: contest.exam_time,
+        isActive: contest.is_active,
+        startTime: contest.start_time,
+        imageUrl: contest.image_url,
+        groupQuestion: contest.group_question,
+      }));
+      setContests(updatedContests);
     } else {
       enqueueSnackbar((res && res.message) || 'Fetch data failed', {
         variant: 'error',

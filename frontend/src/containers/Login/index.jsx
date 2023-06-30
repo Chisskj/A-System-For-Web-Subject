@@ -1,4 +1,3 @@
-/* eslint-disable-next-line react/jsx-wrap-multilines */
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useSnackbar } from 'notistack';
@@ -12,8 +11,8 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import { LockOutlined as LockOutlinedIcon } from '@material-ui/icons';
-import { GoogleLogin } from 'react-google-login';
-import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
+// import { GoogleLogin } from 'react-google-login';
+// import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props';
 import actions from '../../redux/actions';
 import useStyles from './index.style';
 import loginType from '../../constants/loginType';
@@ -36,21 +35,21 @@ const Login = () => {
     }
   }, [isLoggingIn, message, enqueueSnackbar]);
 
-  const handleLoginFailureGoogle = (res) => {
-    enqueueSnackbar(res, { variant: 'error' });
-  };
+  // const handleLoginFailureGoogle = (res) => {
+  //   enqueueSnackbar(res, { variant: 'error' });
+  // };
 
-  const handleLoginSuccessGoogle = async (res) => {
-    const { tokenId } = res;
-    dispatch(actions.auth.login(loginType.LOGIN_GOOGLE, { tokenId }));
-  };
+  // const handleLoginSuccessGoogle = async (res) => {
+  //   const { tokenId } = res;
+  //   dispatch(actions.auth.login(loginType.LOGIN_GOOGLE, { tokenId }));
+  // };
 
-  const handleLoginFacebook = async (res) => {
-    const { accessToken, userID } = res;
-    dispatch(
-      actions.auth.login(loginType.LOGIN_FACEBOOK, { accessToken, userID }),
-    );
-  };
+  // const handleLoginFacebook = async (res) => {
+  //   const { accessToken, userID } = res;
+  //   dispatch(
+  //     actions.auth.login(loginType.LOGIN_FACEBOOK, { accessToken, userID }),
+  //   );
+  // };
 
   const validateLogin = () => {
     let countError = 0;
@@ -165,7 +164,7 @@ const Login = () => {
               <div className={classes.divider} />
             </Box>
 
-            <Grid container spacing={3}>
+            {/* <Grid container spacing={3}>
               <Grid item xs={6}>
                 <GoogleLogin
                   clientId="802105279409-3f4hr8psra01jd28d9rhuupgp64658k4.apps.googleusercontent.com"
@@ -227,7 +226,7 @@ const Login = () => {
                   )}
                 />
               </Grid>
-            </Grid>
+            </Grid> */}
           </form>
         </div>
       </Grid>

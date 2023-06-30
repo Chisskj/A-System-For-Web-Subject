@@ -27,26 +27,38 @@ const Home = () => {
   const [contestsJoined, setContestsJoined] = useState([]);
 
   const fetchContests = async () => {
-    const data = await apis.contest.getContests();
-    const data1 = JSON.parse(data);
-    if (data1 && data1.status) {
-      setContests(data1.result.data);
-      contestsDefault = [...data1.result.data];
-      setIsLoading(false);
-    } else {
-      enqueueSnackbar((data1 && data1.message) || 'Fetch data failed', {
+    try {
+      const data = await apis.contest.getContests();
+      const data1 = JSON.parse(data);
+      if (data1 && data1.status) {
+        setContests(data1.result.data);
+        contestsDefault = [...data1.result.data];
+        setIsLoading(false);
+      } else {
+        enqueueSnackbar((data1 && data1.message) || 'Fetch data failed', {
+          variant: 'error',
+        });
+      }
+    } catch (error) {
+      enqueueSnackbar('Fetch data failed', {
         variant: 'error',
       });
     }
   };
 
   const fetchContestsJoined = async () => {
-    const data = await apis.contest.getContestsJoined();
-    const data1 = JSON.parse(data);
-    if (data1 && data1.status) {
-      setContestsJoined(data1.result.contests);
-    } else {
-      enqueueSnackbar((data1 && data1.message) || 'Fetch data failed', {
+    try {
+      const data = await apis.contest.getContestsJoined();
+      const data1 = JSON.parse(data);
+      if (data1 && data1.status) {
+        setContestsJoined(data1.result.contests);
+      } else {
+        enqueueSnackbar((data1 && data1.message) || 'Fetch data failed', {
+          variant: 'error',
+        });
+      }
+    } catch (error) {
+      enqueueSnackbar('Fetch data failed', {
         variant: 'error',
       });
     }
@@ -92,7 +104,6 @@ const Home = () => {
       setContests([...newContests]);
       return;
     }
-    return;
   };
 
   if (isLoading) {
@@ -114,9 +125,7 @@ const Home = () => {
           textColor="primary"
         >
           {menus.map((el) => (
-            <Tab label={el.heading} key={el.id}>
-              {el.heading}
-            </Tab>
+            <Tab label={el.heading} key={el.id} />
           ))}
         </Tabs>
       </Paper>
@@ -124,13 +133,13 @@ const Home = () => {
       {tab === 1 ? (
         <Grid container spacing={3}>
           {contestsJoined.map((el) => (
-            <TabDetail item={el} />
+            <TabDetail item={el} key={el.id} />
           ))}
         </Grid>
       ) : (
         <Grid container spacing={3}>
           {contests.map((el) => (
-            <TabDetail item={el} />
+            <TabDetail item={el} key={el.id} />
           ))}
         </Grid>
       )}

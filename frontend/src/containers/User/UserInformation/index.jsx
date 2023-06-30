@@ -23,9 +23,14 @@ const User = () => {
   const { enqueueSnackbar } = useSnackbar();
 
   const [userInfo, setUserInfo] = useState(
-    useSelector((state) => state.auth.user),
+    useSelector((state) => ({
+      ...state.auth.user,
+      phoneNumber: state.auth.user.phone_number,
+      urlFacebook: state.auth.user.url_facebook,
+      urlYoutube: state.auth.user.url_youtube,
+      urlWebsite: state.auth.user.url_website,
+    })),
   );
-
   const handleChange = (e) => {
     setUserInfo({
       ...userInfo,
@@ -159,7 +164,7 @@ const User = () => {
                   label="Số điện thoại"
                   variant="outlined"
                   fullWidth
-                  value={(userInfo && userInfo.phone_number) || ''}
+                  value={(userInfo && userInfo.phoneNumber) || ''}
                   onChange={handleChange}
                 />
               </Grid>
@@ -169,7 +174,7 @@ const User = () => {
                   label="Link Facebook"
                   variant="outlined"
                   fullWidth
-                  value={(userInfo && userInfo.url_facebook) || ''}
+                  value={(userInfo && userInfo.urlFacebook) || ''}
                   onChange={handleChange}
                 />
               </Grid>
@@ -179,7 +184,7 @@ const User = () => {
                   label="Link Youtube"
                   variant="outlined"
                   fullWidth
-                  value={(userInfo && userInfo.url_youtube) || ''}
+                  value={(userInfo && userInfo.urlYoutube) || ''}
                   onChange={handleChange}
                 />
               </Grid>
@@ -189,7 +194,7 @@ const User = () => {
                   label="Link Website"
                   variant="outlined"
                   fullWidth
-                  value={(userInfo && userInfo.url_website) || ''}
+                  value={(userInfo && userInfo.urlWebsite) || ''}
                   onChange={handleChange}
                 />
               </Grid>

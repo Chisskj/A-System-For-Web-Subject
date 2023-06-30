@@ -161,14 +161,21 @@ const ContestModal = ({
     const formData = new FormData();
     const file = e.target.files[0];
     formData.append('file', file);
-    const data = await apis.upload.uploadFile({ formData });
-    const res = JSON.parse(data);
-    if (res && res.status) {
-      setContest({
-        ...contest,
-        imageUrl: res.result.link,
-      });
-    } else {
+    try {
+      const response = await apis.upload.uploadFile(formData); // Pass the FormData object directly without wrapping in curly braces
+      const data = await response.json(); // Parse the response as JSON
+      if (data && data.status) {
+        setContest({
+          ...contest,
+          imageUrl: data.result.link,
+        });
+      } else {
+        enqueueSnackbar('Upload failed', {
+          variant: 'error',
+        });
+      }
+    } catch (error) {
+      // Handle any error that occurred during the request or parsing
       enqueueSnackbar('Upload failed', {
         variant: 'error',
       });
