@@ -142,6 +142,7 @@ const GroupQuestion = () => {
         imageUrl,
       });
       const data1 = JSON.parse(data);
+      data1.result.groupQuestion = { ...data1.result.group_question };
       if (data1 && data1.status) {
         setOpenModal(false);
         const newGroupQuestions = [...groupQuestions];
